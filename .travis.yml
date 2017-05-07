@@ -12,7 +12,7 @@ after_success:
 - git config --global user.name "Travis CI"
 - cd public && git add --all && git commit -m "Publishing to gh-pages from Travis CI"
 - git remote add origin-pages https://${GH_TOKEN}@github.com/janwillies/serverless-exercises.git > /dev/null 2>&1
-- git push origin gh-pages
+- git push --quiet -u origin-pages gh-pages
 
 env:
   global:
