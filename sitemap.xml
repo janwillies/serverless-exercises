@@ -2,64 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.org/01_hello/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/01_hello/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/01_gettingstarted/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/01_gettingstarted/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/02_mattermost/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/02_mattermost/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/02_update/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/02_update/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/01_echo/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/01_echo/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ex1/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/ex1/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ex2/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/ex2/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ex3/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/ex3/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ex4/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/ex4/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/_header/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/_header/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/contacts/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/contacts/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/01_debug/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/01_debug/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://janwillies.github.io/serverless-exercises/tags/</loc>
     <priority>0</priority>
   </url>
   
