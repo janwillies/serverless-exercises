@@ -6,4 +6,4 @@ identifier = "ex1"
 +++
 
 
-handle input from mattermost chat
+parse input from mattermost chat

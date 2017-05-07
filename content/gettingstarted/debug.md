@@ -4,7 +4,7 @@ title = "Debugging"
 
 [menu.main]
 identifier = "debugging"
-parent="gettingstarted"
+parent="install"
 +++
 Calling the `kubeless` binary without any parameters prints out the available options:
 ```

@@ -3,7 +3,7 @@ title = "Update a Function"
 weight = 2
 [menu.main]
 identifier = "01-update"
-parent="gettingstarted"
+parent="install"
 +++
 Let's make our example a bit more specific. Edit the sourcecode in `hello.py` and replace _World_ with _Frankfurt_. Then re-upload to kubeless:
 ```

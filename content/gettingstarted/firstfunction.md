@@ -3,7 +3,7 @@ title = "First Function"
 weight = 1
 [menu.main]
 identifier = "10-hello-overview"
-parent="gettingstarted"
+parent="install"
 +++
 In this exercise we will write a simple function in python and upload it to kubeless. It can be triggered by an HTTP-Call afterwards
 

@@ -2,7 +2,7 @@
 title = "Mattermost"
 weight = 2
 [menu.main]
-identifier = "20-mattermost-overview"
+identifier = "slash"
 +++
 
 Now we can create a _slash_-command in Mattermost to interact with our function. A _slash_-command allows you to enter a `/` followed by a command, and optionally some arguments, then an HTTP request will be sent to our function.
@@ -10,7 +10,6 @@ Now we can create a _slash_-command in Mattermost to interact with our function.
 Login to Mattermost and look for the **Integrations** menu:
 
 ![Mattermost Integration](/mm_integrations.png) 
-<!--![Mattermost Slash](/mm_slash.png)-->
 
 Then click **Slash Command** and **Add Slash Command**.
 

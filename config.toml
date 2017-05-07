@@ -1,10 +1,29 @@
-baseURL = "https://janwillies.github.io/serverless-exercises/"
+baseURL = "http://serverless.containercluster.net"
 languageCode = "en-us"
 title = "Custom Dev and TA Conference Day 2017"
+theme = "hugo-theme-docdock"
+
+[params]
+editURL = "https://github.com/janwillies/serverless-exercises/edit/master/content/"
+
+[outputs]
+home = [ "HTML", "JSON"]
 
 [[menu.shortcuts]]
 pre = "<h3>More</h3>"
-name = "<i class='fa fa-github'></i> Github repo"
-identifier = "ds"
+name = "<i class='fa fa-github'></i> Jan Willies"
+identifier = "jw"
 url = "https://github.com/janwillies/"
 weight = 2
+
+[[menu.shortcuts]]
+name = "<i class='fa fa-github'></i> Jan Delgado"
+identifier = "jd"
+url = "https://github.com/jandelgado"
+weight = 3
+
+[[menu.shortcuts]]
+name = "<i class='fa fa-github'></i> Roman Schiefer"
+identifier = "rs"
+url = "https://github.com/gonzochic"
+weight = 4

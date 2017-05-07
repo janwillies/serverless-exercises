@@ -3,8 +3,9 @@ title = "Echo Service"
 weight = 3
 [menu.main]
 identifier = "echo-post"
-parent="gettingstarted"
+parent="install"
 +++
+
 Not a whole lot useful to just trigger functions. We want to hand some data to the function. Let's create a function which handles a `POST`.
 #### Create Echo Function
 Edit the sourcecode for the function with `vim echo.py`:
@@ -20,13 +21,13 @@ def handler(context):
     # team_id = context.forms.team_id
     # command = context.forms.command
     # team_domain = context.forms.team_domain
-    user_name = context.forms.user_name
+    # user_name = context.forms.user_name
     # channel_name = context.forms.channel_name
-    # text = context.forms.text
+    text = context.forms.text
 
     # format the response object for mattermost
-    response = {"response_type": "ephemeral",
-                "text": "Hallo, " + user_name}
+    response = {"response_type": "in_channel",
+                "text": "Echo: " + text}
 
 
     # return response to mattermost
@@ -40,13 +41,8 @@ kubeless function deploy <TEAM-NAME>-echo --runtime python27 --handler echo.hand
 
 Now when we call the function, we need to hand over some data:
 ```
-$ curl -X POST -d '{"context.forms.user_name":"Jan"}' <TEAM-NAME>-echo.default:8080 -H "Content-type: application/json"
-{"text": "Hello, Jan"}
+$ curl -X POST -d"text=test" team1-echo.default:8080 -H "Content-Type: application/x-www-form-urlencoded"
+{"text": "Echo: test", "response_type": "in_channel"}
 ```
-On your own laptop this works:
-```
-kubeless function call <TEAM-NAME>-echo --data '{"context.forms.user_name":"Jan"}'
-```
-
 
 Not too bad! Head over to the Mattermost to interact with the function via a chatbot.
