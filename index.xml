@@ -29,7 +29,9 @@ Now deploy the function to kubeless, replace &amp;lt;TEAM-NAME&amp;gt; with some
       
       <guid>http://example.org/01_gettingstarted/</guid>
       <description>Chatroom Create an account on https://mattermost.containercluster.net if you haven&amp;rsquo;t already.
-Setting up the IDE You can either SSH into our lab environment, or use an IDE on your laptop.</description>
+Setting up the IDE You can either SSH into our lab environment, or use an IDE on your laptop.
+Using your own laptop will only work if you have Linux or OS X available
+ 1. Use the provided environment SSH into the lab environment with the credentials provided in the chatroom. You may need to download an SSH-Client like putty for that.</description>
     </item>
     
     <item>
