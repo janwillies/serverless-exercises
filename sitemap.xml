@@ -2,64 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/01_hello/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/firstfunction/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/01_gettingstarted/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/install/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/02_mattermost/</loc>
+    <loc>http://serverless.containercluster.net/mattermost/slash/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/02_update/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/update/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/01_echo/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/echo/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/ex1/</loc>
+    <loc>http://serverless.containercluster.net/ex1/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/ex2/</loc>
+    <loc>http://serverless.containercluster.net/ex2/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/ex3/</loc>
+    <loc>http://serverless.containercluster.net/ex3/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/ex4/</loc>
+    <loc>http://serverless.containercluster.net/ex4/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/_header/</loc>
+    <loc>http://serverless.containercluster.net/rest/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/</loc>
+    <loc>http://serverless.containercluster.net/_header/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/categories/</loc>
+    <loc>http://serverless.containercluster.net/</loc>
+  </url>
+  
+  <url>
+    <loc>http://serverless.containercluster.net/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/contacts/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/debug/</loc>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/01_debug/</loc>
+    <loc>http://serverless.containercluster.net/gettingstarted/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://janwillies.github.io/serverless-exercises/tags/</loc>
+    <loc>http://serverless.containercluster.net/mattermost/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://serverless.containercluster.net/tags/</loc>
     <priority>0</priority>
   </url>
   
