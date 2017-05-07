@@ -7,7 +7,7 @@ theme = "hugo-theme-docdock"
 editURL = "https://github.com/janwillies/serverless-exercises/edit/master/content/"
 
 [outputs]
-home = [ "HTML", "JSON"]
+home = [ "HTML", "RSS", "JSON"]
 
 [[menu.shortcuts]]
 pre = "<h3>More</h3>"
