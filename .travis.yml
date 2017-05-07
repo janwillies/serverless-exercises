@@ -1,0 +1,22 @@
+lang: ruby
+before_install:
+- wget https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.deb
+- sudo dpkg -i hugo_0.20.7_Linux-64bit.deb
+before_script:
+- git worktree add -B gh-pages public origin/gh-pages
+- git clone --depth 1 https://github.com/vjeantet/hugo-theme-docdock.git themes/hugo-theme-docdock
+script:
+- hugo
+after_success:
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
+- cd public && git add --all && git commit -m "Publishing to gh-pages from Travis CI"
+- git remote add origin-pages https://${GH_TOKEN}@github.com/janwillies/serverless-exercises.git > /dev/null 2>&1
+
+env:
+  global:
+    secure: q1mXaSCj3FShNI9tIgQi2fbe6RVJXCtgG9PvFYUUodwWl7bmCoklIrKCKTsklgiAL0Qa2KkxZNTbtiI8CyZrmc2v0kwhGweSltn+4zHJ5JLsfMSV3Nl80i+FHbPRaT0nAJn7u4aT9C4EpNbvWsCCAAC/XddN/Ch4vYviWP79VTCEtxRJR1leVZJWHHQDKTPNWo5lcUUJEwXz4Xyd3O6mn2j5rtStaBm68WUvpl1BfeXr0v5hc7wuQ6+4ZESvkSwE2OxdAUU9C5wKnEpzaXDJwg0ljZw2ZIsVgCmZTTlPA1Roxk7O+q/hegi6uijDZATUqU1ZplUKbQW5/dDWyROrH+zyRjSMvZegp0Ngn54HocA2jIhV7XJhVnQu4G9qc2LKBjS5p32KdNvFLBCiQxEqv6xvheQf4IO7sYMdloxHUodMgnYTViugmhyl8+IZf9C9ehLdKy8VUlBaWZzal2DvKpbMIkjB+aiCvBZWvEnUEGr2UJENtYDU25gYepGDibBcA1J0bVQhObcFfpCW2I7X65q6ypmCj29T2sBy+oZze4urg0P7X7HDdDev8Y1Y28MWQqAYiK549g++bv2ujzXQ1whcHPnsBoWg+DJBTQrFVOEHDGJWAEPygaLnMm/5h4rhTLZQXcqDnkBzdQGMTuQEGE6XzhAGZe+vHodQ9gdoFyY=
+
+branches:
+  only:
+  - master
