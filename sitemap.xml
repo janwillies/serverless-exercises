@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://example.org/01_hello/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/01_gettingstarted/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/02_mattermost/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/02_update/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/01_echo/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ex1/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ex2/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ex3/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ex4/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/_header/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/contacts/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/01_debug/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
