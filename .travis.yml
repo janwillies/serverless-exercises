@@ -3,7 +3,7 @@ before_install:
 - wget https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.deb
 - sudo dpkg -i hugo_0.20.7_Linux-64bit.deb
 before_script:
-- git worktree add -B gh-pages public origin/gh-pages
+- git clone .git --branch gh-pages public
 - git clone --depth 1 https://github.com/vjeantet/hugo-theme-docdock.git themes/hugo-theme-docdock
 script:
 - hugo
@@ -12,6 +12,7 @@ after_success:
 - git config --global user.name "Travis CI"
 - cd public && git add --all && git commit -m "Publishing to gh-pages from Travis CI"
 - git remote add origin-pages https://${GH_TOKEN}@github.com/janwillies/serverless-exercises.git > /dev/null 2>&1
+- git push origin gh-pages
 
 env:
   global:
