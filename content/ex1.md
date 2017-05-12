@@ -5,19 +5,15 @@ weight = 3
 identifier = "ex1"
 +++
 
+Parse input from mattermost chat and query a REST API:
 
-parse input from mattermost chat
+```sh
+kubeless function deploy <TEAM-NAME>-yoda --runtime python27 --handler yoda.handler --from-file yoda.py --trigger-http
+```
 
-and then maybe return some of 
 ```
-    # user_id = context.forms.user_id
-    # response_url = context.forms.response_url
-    # token = context.forms.token
-    # channel_id = context.forms.channel_id
-    # team_id = context.forms.team_id
-    # command = context.forms.command
-    # team_domain = context.forms.team_domain
-    # user_name = context.forms.user_name
-    # channel_name = context.forms.channel_name
-    text = context.forms.text
+kubeless function update <TEAM-NAME>-yoda --runtime python27 --handler yoda.handler --from-file yoda.py
 ```
+
+And then return with whatever the API responds to the chatroom.
+
