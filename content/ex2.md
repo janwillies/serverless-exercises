@@ -5,64 +5,50 @@ weight = 3
 identifier = "ex2"
 +++
 
+Now that we are python experts, we can move on to JavaScript. The following code implements an echo service in JavaScript:
 
-yoda api? https://market.mashape.com/ismaelc/yoda-speak
+```javascript
+const querystring = require('querystring');
 
-something like (but without async/await since we only have node-6.10)
-```
-'use strict';
+module.exports = {
 
-const rp = require('request-promise-native');
+    handler: function (req, res) {
 
-module.exports = async function (context) {
+        var body = []
 
-    const body = context.request.body;
+        req.on('error', (err) =>
+            console.error(err)
+        ).on('data', (chunk) =>
+            body.push(chunk)
+        ).on('end', () => {
 
-    // no parameters given, respond to user with help
-    if (!body.text || body.text === 'help') {
-        return {
-            status: 200,
-            body: {
-                "response_type": "ephemeral",
-                "text": "Example: `/yoda You have to go a long way`",
-                "username": "Yoda",
-                "icon_url": "https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png"
-            }
-        };
-    }
+            let qs = querystring.parse(body)
+            body = Buffer.concat(body).toString()
 
-    // build the request object
-    try {
-        var options = {
-            uri: 'https://yoda.p.mashape.com/yoda',
-            qs: {
-                sentence: body.text
-            },
-            headers: {
-                'X-Mashape-Key': 'WXe3GAMpzmmshaDHEa8oS0QBOTzWp1JMiW2jsn1Uj4B5oIeYQ4',
-                'Accept': 'text/plain'
-            }
-        };
+            console.log("querystring: ", qs)
 
-        // query mashape api and wait for the repsonse
-        const response = await rp(options);
-
-        // respond to mattermost channel
-        return {
-            status: 200,
-            body: {
+            let resp = {
                 "response_type": "in_channel",
-                "text": response,
-                "username": "Yoda",
-                "icon_url": "https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png"
+                "text": qs.text
             }
-        };
-    } catch (e) {
-        console.error(e);
-        return {
-            status: 500,
-            body: e
-        };
+
+            res.end(JSON.stringify(resp))
+
+        })
     }
 }
 ```
+{{% notice note %}}
+We use the LTS Version of nodejs (`v6.10.2`). 
+{{% /notice %}}
+
+We can deploy the function with the already familiar commandline:
+
+```sh
+kubeless function deploy <TEAM-NAME>-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js --trigger-http
+```
+And update it:
+```sh
+kubeless function update <TEAM-NAME>-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js
+```
+Now create a `slash`-command in Mattermost to interact with the function!
