@@ -87,7 +87,7 @@ import httplib, urllib import xml.etree.ElementTree import json def handler(): c
       
       <guid>http://serverless.containercluster.net/ex2/</guid>
       <description>Now that we are python experts, we can move on to JavaScript. The following code implements an echo service in JavaScript:
-const querystring = require(&#39;querystring&#39;); module.exports = { handler: function (req, res) { var body = [] req.on(&#39;error&#39;, (err) =&amp;gt; console.error(err) ).on(&#39;data&#39;, (chunk) =&amp;gt; body.push(chunk) ).on(&#39;end&#39;, () =&amp;gt; { let qs = querystring.parse(body) body = Buffer.concat(body).toString() console.log(&amp;quot;querystring: &amp;quot;, qs) let resp = { &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: qs.text } res.end(JSON.stringify(resp)) }) } }  We use the LTS Version of nodejs (v6.</description>
+const querystring = require(&#39;querystring&#39;); module.exports = { handler: function (req, res) { var body = [] req.on(&#39;error&#39;, (err) =&amp;gt; console.error(err) ).on(&#39;data&#39;, (chunk) =&amp;gt; body.push(chunk) ).on(&#39;end&#39;, () =&amp;gt; { body = Buffer.concat(body).toString() let qs = querystring.parse(body) console.log(&amp;quot;querystring: &amp;quot;, qs) let resp = { &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: qs.text } res.end(JSON.stringify(resp)) }) } }  We use the LTS Version of nodejs (v6.</description>
     </item>
     
     <item>
