@@ -41,3 +41,7 @@ def handler():
 ```
 
 Then create a mattermost `slash`-command to call the function.
+
+{{% notice warning %}}
+You have to configure a GET request in Mattermost (instead of POST)
+{{% /notice %}}
