@@ -22,8 +22,8 @@ module.exports = {
             body.push(chunk)
         ).on('end', () => {
 
-            let qs = querystring.parse(body)
             body = Buffer.concat(body).toString()
+            let qs = querystring.parse(body)
 
             console.log("querystring: ", qs)
 
