@@ -285,15 +285,41 @@
           
 
 
-<p>Parse input from mattermost chat and query a REST API:</p>
+<p>Parse input from mattermost chat and query a REST API. In our particular example, we&rsquo;ll query the <code>ycombinator</code> API:</p>
 
-<pre><code class="language-sh">kubeless function deploy &lt;TEAM-NAME&gt;-yoda --runtime python27 --handler yoda.handler --from-file yoda.py --trigger-http
+<pre><code>import httplib, urllib
+import xml.etree.ElementTree
+import json
+
+def handler():
+
+    conn = httplib.HTTPSConnection(&quot;news.ycombinator.com&quot;)
+    conn.request(&quot;GET&quot;, &quot;/rss&quot;)
+
+    r1 = conn.getresponse()
+
+    # print r1.status, r1.reason
+    data = r1.read()
+
+    e = xml.etree.ElementTree.fromstring(data)
+
+    channel = e.findall(&quot;channel/item&quot;)
+
+    response = &quot;&quot;
+
+    for child in channel:
+
+        title = child.find(&quot;title&quot;)
+        url = child.find(&quot;link&quot;)
+        response = response + title.text + &quot;\n&quot;
+
+    conn.close()
+
+    # format the response object for mattermost
+    return json.dumps({&quot;response_type&quot;: &quot;in_channel&quot;, &quot;text&quot;: response})
 </code></pre>
 
-<pre><code>kubeless function update &lt;TEAM-NAME&gt;-yoda --runtime python27 --handler yoda.handler --from-file yoda.py
-</code></pre>
-
-<p>And then return with whatever the API responds to the chatroom.</p>
+<p>Then create a mattermost <code>slash</code>-command to call the function.</p>
 
 
 <footer class=" footline" >
