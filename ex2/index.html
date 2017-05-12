@@ -9,7 +9,6 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
-    
     <title>Exercise 2 :: Custom Dev and TA Conference Day 2017</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -21,14 +20,17 @@
     <link href="/css/hugo-theme.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/jquery-2.x.min.js"></script>
-    <style type="text/css">:root #header + #content > #left > #rlblock_left
-    {display:none !important;}</style>
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left {
+        display:none !important;
+      }
+    </style>
     
 
   </head>
   <body class="" data-url="/ex2/">
     
-<nav id="sidebar">
+<nav id="sidebar" class="">
   <div id="header-wrapper">
     <div id="header">
        
@@ -73,7 +75,12 @@
          
         ">
             <a href="/gettingstarted/install/">
-                Getting Started
+                <span>Getting Started</span>
+                
+                    
+                        <i class="fa fa-angle-right fa-lg category-icon"></i>
+                    
+                
                 
             </a>
             
@@ -89,7 +96,8 @@
          
         ">
             <a href="/mattermost/slash/">
-                Mattermost
+                <span>Mattermost</span>
+                
                 
             </a>
             
@@ -105,7 +113,8 @@
          
         ">
             <a href="/ex1/">
-                Exercise 1
+                <span>Exercise 1</span>
+                
                 
             </a>
             
@@ -121,7 +130,8 @@
         active 
         ">
             <a href="/ex2/">
-                Exercise 2
+                <span>Exercise 2</span>
+                
                 
             </a>
             
@@ -141,7 +151,8 @@
          
         ">
             <a href="/ex3/">
-                Exercise 3
+                <span>Exercise 3</span>
+                
                 
             </a>
             
@@ -157,7 +168,8 @@
          
         ">
             <a href="/ex4/">
-                Exercise 4
+                <span>Exercise 4</span>
+                
                 
             </a>
             
@@ -173,7 +185,8 @@
          
         ">
             <a href="/rest/">
-                Public APIs
+                <span>Public APIs</span>
+                
                 
             </a>
             
@@ -225,115 +238,101 @@
 
         <section id="body">
         <div id="overlay"></div>
-
         <div class="padding highlightable">
         
           <div id="top-bar">
+            
               
-                
-                
-                
-              <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/janwillies/serverless-exercises/edit/master/content/ex2.md" target="blank">
-                    <i class="fa fa-code-fork"></i>
-                    Edit this page
+              
+              
+            <div id="top-github-link">
+              <a class="github-link" href="https://github.com/janwillies/serverless-exercises/edit/master/content/ex2.md" target="blank">
+                <i class="fa fa-code-fork"></i>
+                Edit this page
+              </a>
+            </div>
+              
+            
+
+            <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <span id="sidebar-toggle-span">
+                  <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                    <i class="fa fa-bars"></i>
                   </a>
-              </div>
+                </span>
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                <a href="http://serverless.containercluster.net">
+                  <span class="fa fa-arrow-circle-right" style="font-size:larger" aria-hidden="true"></span>
+                  Custom Dev and TA Conference Day 2017
+                </a>
                 
-              
-              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-
-                  <span id="sidebar-toggle-span">
-                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                        <i class="fa fa-bars"></i>
-                      </a>
-                  </span>
-                  <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
-
-                      <a href="http://serverless.containercluster.net"> 
-                      <span class="fa fa-arrow-circle-right" style="font-size:larger" aria-hidden="true"></span> 
-                      Custom Dev and TA Conference Day 2017</a> 
-                      
-                         / <a href='/ex2/'>Exercise 2</a>
-                      
-                      
-              </div>
-              
-                  <div class="progress">
+                   / <a href='/ex2/'>Exercise 2</a>
+                
+                
+            </div>
+            <div class="progress">
     <div class="wrapper">
 
     </div>
 </div>
 
-            </div>
+          </div>
         
-              
-            <div id="body-inner">
-              
-              <h1>Exercise 2</h1>
-                
+        
+        <div id="body-inner">
+          
+            <h1>Exercise 2</h1>
+          
 
 
-<p>yoda api? <a href="https://market.mashape.com/ismaelc/yoda-speak">https://market.mashape.com/ismaelc/yoda-speak</a></p>
+<p>Now that we are python experts, we can move on to JavaScript. The following code implements an echo service in JavaScript:</p>
 
-<p>something like (but without async/await since we only have node-6.10)</p>
+<pre><code class="language-javascript">const querystring = require('querystring');
 
-<pre><code>'use strict';
+module.exports = {
 
-const rp = require('request-promise-native');
+    handler: function (req, res) {
 
-module.exports = async function (context) {
+        var body = []
 
-    const body = context.request.body;
+        req.on('error', (err) =&gt;
+            console.error(err)
+        ).on('data', (chunk) =&gt;
+            body.push(chunk)
+        ).on('end', () =&gt; {
 
-    // no parameters given, respond to user with help
-    if (!body.text || body.text === 'help') {
-        return {
-            status: 200,
-            body: {
-                &quot;response_type&quot;: &quot;ephemeral&quot;,
-                &quot;text&quot;: &quot;Example: `/yoda You have to go a long way`&quot;,
-                &quot;username&quot;: &quot;Yoda&quot;,
-                &quot;icon_url&quot;: &quot;https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png&quot;
-            }
-        };
-    }
+            let qs = querystring.parse(body)
+            body = Buffer.concat(body).toString()
 
-    // build the request object
-    try {
-        var options = {
-            uri: 'https://yoda.p.mashape.com/yoda',
-            qs: {
-                sentence: body.text
-            },
-            headers: {
-                'X-Mashape-Key': 'WXe3GAMpzmmshaDHEa8oS0QBOTzWp1JMiW2jsn1Uj4B5oIeYQ4',
-                'Accept': 'text/plain'
-            }
-        };
+            console.log(&quot;querystring: &quot;, qs)
 
-        // query mashape api and wait for the repsonse
-        const response = await rp(options);
-
-        // respond to mattermost channel
-        return {
-            status: 200,
-            body: {
+            let resp = {
                 &quot;response_type&quot;: &quot;in_channel&quot;,
-                &quot;text&quot;: response,
-                &quot;username&quot;: &quot;Yoda&quot;,
-                &quot;icon_url&quot;: &quot;https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png&quot;
+                &quot;text&quot;: qs.text
             }
-        };
-    } catch (e) {
-        console.error(e);
-        return {
-            status: 500,
-            body: e
-        };
+
+            res.end(JSON.stringify(resp))
+
+        })
     }
 }
 </code></pre>
+
+<div class="notices note" ><p>We use the LTS Version of nodejs (<code>v6.10.2</code>).</p>
+</div>
+
+
+<p>We can deploy the function with the already familiar commandline:</p>
+
+<pre><code class="language-sh">kubeless function deploy &lt;TEAM-NAME&gt;-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js --trigger-http
+</code></pre>
+
+<p>And update it:</p>
+
+<pre><code class="language-sh">kubeless function update &lt;TEAM-NAME&gt;-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js
+</code></pre>
+
+<p>Now create a <code>slash</code>-command in Mattermost to interact with the function!</p>
 
 
 <footer class=" footline" >
@@ -351,10 +350,99 @@ module.exports = async function (context) {
 
     <div id="navigation">
         
-
-          
         
-              
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+                    
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+                
+                    
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+                
+                    
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+                
+                    
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                    
+                
+                
+                
+            
+        
+        
+            
+            
             
                 
                     
@@ -362,62 +450,42 @@ module.exports = async function (context) {
                         
                     
                 
+                
+                
+            
+        
+        
+            
+            
             
                 
                     
-                        
-                        
-                    
                 
+                
+                
+            
+        
+        
+            
+            
             
                 
                     
-                        
-                        
-                    
+                
+                
                 
             
-                
-                    
-                    
-                
-            
-                
-                    
-                        
-                        
-                            
-                                
-                            
-                        
-                    
-                
-            
-                
-                    
-                        
-                        
-                            
-                        
-                    
-                
-            
-                
-                    
-                        
-                        
-                            
-                        
-                    
-                
-            
+        
+          
 
-            
-                <a class="nav nav-prev" href="/ex1/" title="Exercise 1"> <i class="fa fa-chevron-left"></i></a>
-            
-            
-                <a class="nav nav-next" href="/ex3/" title="Exercise 3" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
-            
+        
+
+
+        
+            <a class="nav nav-prev" href="/ex1/" title="Exercise 1"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/ex3/" title="Exercise 3" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 

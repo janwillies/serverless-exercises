@@ -1,118 +1,118 @@
 [
 {
-	"uri": "/gettingstarted/firstfunction/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/firstfunction/",
 	"title": "First Function",
 	"tags": [],
 	"description": "",
 	"content": "In this exercise we will write a simple function in python and upload it to kubeless. It can be triggered by an HTTP-Call afterwards Create Function Edit the sourcecode for the function with vim hello.py: import json def handler(): # create the response json response = {&amp;quot;text&amp;quot;: &amp;quot;Hello, World&amp;quot;} return json.dumps(response) It&amp;rsquo;s a simple function which responds with Hello, World when called. Now deploy the function to kubeless, replace &amp;lt;TEAM-NAME&amp;gt; with something meaningful: kubeless function deploy &amp;lt;TEAM-NAME&amp;gt;-hello --runtime python27 --handler hello.handler --from-file hello.py --trigger-http Don&amp;rsquo;t worry about the parameters for now, we will dive into them later. After a few seconds we can call the http-endpoint to trigger the function: $ curl &amp;lt;TEAM-NAME&amp;gt;-hello.default:8080 {&amp;quot;text&amp;quot;: &amp;quot;Hello, World&amp;quot;} On your own laptop this works: kubeless function call &amp;lt;TEAM-NAME&amp;gt;-hello "
 },
 {
-	"uri": "/gettingstarted/install/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/install/",
 	"title": "Getting Started",
 	"tags": [],
 	"description": "",
 	"content": "Chatroom Create an account on https://mattermost.containercluster.net if you haven&amp;rsquo;t already. Setting up the IDE You can either SSH into our lab environment, or use an IDE on your laptop. Using your own laptop will only work if you have Linux or OS X available 1. Use the provided environment SSH into the lab environment with the credentials provided in the chatroom. You may need to download an SSH-Client like putty for that. $ ssh user@ssh.containercluster.net Last login: Sat May 6 13:34:10 2017 from 10.2.0.0 ⌁ user@ ~ Now create a folder for you or your team and cd into it: mkdir &amp;lt;TEAM-NAME&amp;gt; &amp;amp;&amp;amp; cd &amp;lt;TEAM-NAME&amp;gt; That&amp;rsquo;s it! You are all set. 2. Use your own laptop First copy the config file from the chatroom to ~/.kube/config. This is used to authenticate yourself. mkdir ~/.kube mv ~/DOWNLOADED-CONFIG ~/.kube/config Next download the client binaries depending on your platform. For linux choose linux, for OSX choose darwin: export PLATFORM=darwin kubectl: curl -O https://storage.googleapis.com/kubernetes-release/release/v1.5.7/bin/$PLATFORM/amd64/kubectl \ &amp;amp;&amp;amp; chmod 755 kubectl \ &amp;amp;&amp;amp; mv kubectl /usr/local/bin/kubectl kubeless: curl -LO https://github.com/bitnami/kubeless/releases/download/0.0.11/kubeless_$PLATFORM-amd64.zip \ &amp;amp;&amp;amp; unzip kubeless_$PLATFORM-amd64.zip \ &amp;amp;&amp;amp; rm kubeless_$PLATFORM-amd64.zip \ &amp;amp;&amp;amp; mv kubeless_$PLATFORM-amd64/kubeless /usr/local/bin/kubeless \ &amp;amp;&amp;amp; rm -fr kubeless_$PLATFORM-amd64 That&amp;rsquo;s it. kubectl cluster-info and kubeless function list should respond with something meaningful now. "
 },
 {
-	"uri": "/mattermost/slash/",
+	"uri": "http://serverless.containercluster.net/mattermost/slash/",
 	"title": "Mattermost",
 	"tags": [],
 	"description": "",
 	"content": "Now we can create a slash-command in Mattermost to interact with our function. A slash-command allows you to enter a / followed by a command, and optionally some arguments, then an HTTP request will be sent to our function. Login to Mattermost and look for the Integrations menu: Then click Slash Command and Add Slash Command. Fill in the following: Key Values Display Name &amp;lt;TEAM-NAME&amp;gt;-echo Description Echo Bot Command Trigger Word &amp;lt;TEAM-NAME&amp;gt;-echo Request URL http://&amp;lt;TEAM-NAME&amp;gt;-echo.default:8080 Request Method POST Response Username &amp;lt;TEAM-NAME&amp;gt;-echo Response Icon URL of a .png or .jpg file at least 128 pixels by 128 pixels Autocomplete [x] Autocomplete Hint Autocomplete Description Echo service After you save and return to the main chatroom, your slash command shows up in input bar: "
 },
 {
-	"uri": "/gettingstarted/update/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/update/",
 	"title": "Update a Function",
 	"tags": [],
 	"description": "",
 	"content": "Let&amp;rsquo;s make our example a bit more specific. Edit the sourcecode in hello.py and replace World with Frankfurt. Then re-upload to kubeless: kubeless function update &amp;lt;TEAM-NAME&amp;gt;-hello --runtime python27 --handler hello.handler --from-file hello.py Watch the new function getting deployed: watch kubectl get pods &amp;lt;ctrl&amp;gt;-c We can also list all functions: $ kubeless function list +----------+-----------+---------------+----------+------+-------+--------------+ | NAME | NAMESPACE | HANDLER | RUNTIME | TYPE | TOPIC | DEPENDENCIES | +----------+-----------+---------------+----------+------+-------+--------------+ | hello | default | hello.handler | python27 | HTTP | | | +----------+-----------+---------------+----------+------+-------+--------------+ Did our update work? $ curl &amp;lt;TEAM-NAME&amp;gt;-hello.default:8080 {&amp;quot;text&amp;quot;: &amp;quot;Hello, Frankfurt&amp;quot;} "
 },
 {
-	"uri": "/gettingstarted/echo/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/echo/",
 	"title": "Echo Service",
 	"tags": [],
 	"description": "",
 	"content": "Not a whole lot useful to just trigger functions. We want to hand some data to the function. Let&amp;rsquo;s create a function which handles a POST. Create Echo Function Edit the sourcecode for the function with vim echo.py: import json def handler(context): # user_id = context.forms.user_id # response_url = context.forms.response_url # token = context.forms.token # channel_id = context.forms.channel_id # team_id = context.forms.team_id # command = context.forms.command # team_domain = context.forms.team_domain # user_name = context.forms.user_name # channel_name = context.forms.channel_name text = context.forms.text # format the response object for mattermost response = {&amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Echo: &amp;quot; + text} # return response to mattermost return json.dumps(response) Deploy the function to kubeless: kubeless function deploy &amp;lt;TEAM-NAME&amp;gt;-echo --runtime python27 --handler echo.handler --from-file echo.py --trigger-http Now when we call the function, we need to hand over some data: $ curl -X POST -d&amp;quot;text=test&amp;quot; team1-echo.default:8080 -H &amp;quot;Content-Type: application/x-www-form-urlencoded&amp;quot; {&amp;quot;text&amp;quot;: &amp;quot;Echo: test&amp;quot;, &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;} Not too bad! Head over to the Mattermost to interact with the function via a chatbot. "
 },
 {
-	"uri": "/ex1/",
+	"uri": "http://serverless.containercluster.net/ex1/",
 	"title": "Exercise 1",
 	"tags": [],
 	"description": "",
 	"content": "parse input from mattermost chat and then maybe return some of # user_id = context.forms.user_id # response_url = context.forms.response_url # token = context.forms.token # channel_id = context.forms.channel_id # team_id = context.forms.team_id # command = context.forms.command # team_domain = context.forms.team_domain # user_name = context.forms.user_name # channel_name = context.forms.channel_name text = context.forms.text "
 },
 {
-	"uri": "/ex2/",
+	"uri": "http://serverless.containercluster.net/ex2/",
 	"title": "Exercise 2",
 	"tags": [],
 	"description": "",
-	"content": "yoda api? https://market.mashape.com/ismaelc/yoda-speak something like (but without async/await since we only have node-6.10) &#39;use strict&#39;; const rp = require(&#39;request-promise-native&#39;); module.exports = async function (context) { const body = context.request.body; // no parameters given, respond to user with help if (!body.text || body.text === &#39;help&#39;) { return { status: 200, body: { &amp;quot;response_type&amp;quot;: &amp;quot;ephemeral&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Example: `/yoda You have to go a long way`&amp;quot;, &amp;quot;username&amp;quot;: &amp;quot;Yoda&amp;quot;, &amp;quot;icon_url&amp;quot;: &amp;quot;https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png&amp;quot; } }; } // build the request object try { var options = { uri: &#39;https://yoda.p.mashape.com/yoda&#39;, qs: { sentence: body.text }, headers: { &#39;X-Mashape-Key&#39;: &#39;WXe3GAMpzmmshaDHEa8oS0QBOTzWp1JMiW2jsn1Uj4B5oIeYQ4&#39;, &#39;Accept&#39;: &#39;text/plain&#39; } }; // query mashape api and wait for the repsonse const response = await rp(options); // respond to mattermost channel return { status: 200, body: { &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: response, &amp;quot;username&amp;quot;: &amp;quot;Yoda&amp;quot;, &amp;quot;icon_url&amp;quot;: &amp;quot;https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png&amp;quot; } }; } catch (e) { console.error(e); return { status: 500, body: e }; } } "
+	"content": "Now that we are python experts, we can move on to JavaScript. The following code implements an echo service in JavaScript: const querystring = require(&#39;querystring&#39;); module.exports = { handler: function (req, res) { var body = [] req.on(&#39;error&#39;, (err) =&amp;gt; console.error(err) ).on(&#39;data&#39;, (chunk) =&amp;gt; body.push(chunk) ).on(&#39;end&#39;, () =&amp;gt; { let qs = querystring.parse(body) body = Buffer.concat(body).toString() console.log(&amp;quot;querystring: &amp;quot;, qs) let resp = { &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: qs.text } res.end(JSON.stringify(resp)) }) } } We use the LTS Version of nodejs (v6.10.2). We can deploy the function with the already familiar commandline: kubeless function deploy &amp;lt;TEAM-NAME&amp;gt;-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js --trigger-http And update it: kubeless function update &amp;lt;TEAM-NAME&amp;gt;-echojs --runtime nodejs6.10 --handler echo.handler --from-file echo.js Now create a slash-command in Mattermost to interact with the function! "
 },
 {
-	"uri": "/ex3/",
+	"uri": "http://serverless.containercluster.net/ex3/",
 	"title": "Exercise 3",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/ex4/",
+	"uri": "http://serverless.containercluster.net/ex4/",
 	"title": "Exercise 4",
 	"tags": [],
 	"description": "",
 	"content": "scale application on kubernets? "
 },
 {
-	"uri": "/rest/",
+	"uri": "http://serverless.containercluster.net/rest/",
 	"title": "Public APIs",
 	"tags": [],
 	"description": "",
 	"content": "Further ideas: https://kubernetes.io/docs/api-reference/v1.5/ https://market.mashape.com/explore?sort=developers https://api.zalando.com/swagger/index.html https://developer.marvel.com/ "
 },
 {
-	"uri": "/_header/",
+	"uri": "http://serverless.containercluster.net/_header/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "Frankfurt 2017 "
 },
 {
-	"uri": "/",
+	"uri": "http://serverless.containercluster.net/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "Custom Dev and TA Conference Day Serverless is about to become the programming model of the future, and in this session we will explore why. We will leave the public cloud offerings aside (no lambda, no cloud-functions) but instead have a look at on-premise serverless, which is enabled through container-based architectures. We will meet in a chatroom and develop bots with serverless functions in javascript (nodejs) and python. Jan Willies, Jan Delgado, Roman Schiefer "
 },
 {
-	"uri": "/categories/",
+	"uri": "http://serverless.containercluster.net/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/gettingstarted/debug/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/debug/",
 	"title": "Debugging",
 	"tags": [],
 	"description": "",
 	"content": "Calling the kubeless binary without any parameters prints out the available options: function command allows user to list, deploy, edit, delete functions running on Kubeless Usage: kubeless function SUBCOMMAND [flags] kubeless function [command] Available Commands: call call function from cli delete delete a function from Kubeless deploy deploy a function to Kubeless describe describe a function deployed to Kubeless list list all functions deployed to Kubeless logs get logs from a running function update update a function on Kubeless Flags: -h, --help help for function Use &amp;quot;kubeless function [command] --help&amp;quot; for more information about a command. Here are some useful commands to debug your function: kubeless function logs kubeless function list kubectl get pods kubectl get svc "
 },
 {
-	"uri": "/gettingstarted/",
+	"uri": "http://serverless.containercluster.net/gettingstarted/",
 	"title": "Gettingstarteds",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/mattermost/",
+	"uri": "http://serverless.containercluster.net/mattermost/",
 	"title": "Mattermosts",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/tags/",
+	"uri": "http://serverless.containercluster.net/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

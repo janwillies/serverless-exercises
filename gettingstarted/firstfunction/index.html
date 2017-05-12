@@ -9,7 +9,6 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
-    
     <title>First Function :: Custom Dev and TA Conference Day 2017</title>
     <link href="/css/nucleus.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -21,14 +20,17 @@
     <link href="/css/hugo-theme.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/jquery-2.x.min.js"></script>
-    <style type="text/css">:root #header + #content > #left > #rlblock_left
-    {display:none !important;}</style>
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left {
+        display:none !important;
+      }
+    </style>
     
 
   </head>
   <body class="" data-url="/gettingstarted/firstfunction/">
     
-<nav id="sidebar">
+<nav id="sidebar" class="">
   <div id="header-wrapper">
     <div id="header">
        
@@ -73,7 +75,12 @@
          
         parent">
             <a href="/gettingstarted/install/">
-                Getting Started
+                <span>Getting Started</span>
+                
+                    
+                        <i class="fa fa-angle-down fa-lg category-icon"></i>
+                    
+                
                 
             </a>
             
@@ -91,7 +98,8 @@
         active 
         ">
             <a href="/gettingstarted/firstfunction/">
-                First Function
+                <span>First Function</span>
+                
                 
             </a>
             
@@ -111,7 +119,8 @@
          
         ">
             <a href="/gettingstarted/update/">
-                Update a Function
+                <span>Update a Function</span>
+                
                 
             </a>
             
@@ -127,7 +136,8 @@
          
         ">
             <a href="/gettingstarted/echo/">
-                Echo Service
+                <span>Echo Service</span>
+                
                 
             </a>
             
@@ -143,7 +153,8 @@
          
         ">
             <a href="/gettingstarted/debug/">
-                Debugging
+                <span>Debugging</span>
+                
                 
             </a>
             
@@ -166,7 +177,8 @@
          
         ">
             <a href="/mattermost/slash/">
-                Mattermost
+                <span>Mattermost</span>
+                
                 
             </a>
             
@@ -182,7 +194,8 @@
          
         ">
             <a href="/ex1/">
-                Exercise 1
+                <span>Exercise 1</span>
+                
                 
             </a>
             
@@ -198,7 +211,8 @@
          
         ">
             <a href="/ex2/">
-                Exercise 2
+                <span>Exercise 2</span>
+                
                 
             </a>
             
@@ -214,7 +228,8 @@
          
         ">
             <a href="/ex3/">
-                Exercise 3
+                <span>Exercise 3</span>
+                
                 
             </a>
             
@@ -230,7 +245,8 @@
          
         ">
             <a href="/ex4/">
-                Exercise 4
+                <span>Exercise 4</span>
+                
                 
             </a>
             
@@ -246,7 +262,8 @@
          
         ">
             <a href="/rest/">
-                Public APIs
+                <span>Public APIs</span>
+                
                 
             </a>
             
@@ -298,41 +315,39 @@
 
         <section id="body">
         <div id="overlay"></div>
-
         <div class="padding highlightable">
         
           <div id="top-bar">
+            
               
-                
-                
-                
-              <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/janwillies/serverless-exercises/edit/master/content/gettingstarted/firstfunction.md" target="blank">
-                    <i class="fa fa-code-fork"></i>
-                    Edit this page
+              
+              
+            <div id="top-github-link">
+              <a class="github-link" href="https://github.com/janwillies/serverless-exercises/edit/master/content/gettingstarted/firstfunction.md" target="blank">
+                <i class="fa fa-code-fork"></i>
+                Edit this page
+              </a>
+            </div>
+              
+            
+
+            <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <span id="sidebar-toggle-span">
+                  <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                    <i class="fa fa-bars"></i>
                   </a>
-              </div>
+                </span>
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                <a href="http://serverless.containercluster.net">
+                  <span class="fa fa-arrow-circle-right" style="font-size:larger" aria-hidden="true"></span>
+                  Custom Dev and TA Conference Day 2017
+                </a>
                 
-              
-              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-
-                  <span id="sidebar-toggle-span">
-                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                        <i class="fa fa-bars"></i>
-                      </a>
-                  </span>
-                  <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
-
-                      <a href="http://serverless.containercluster.net"> 
-                      <span class="fa fa-arrow-circle-right" style="font-size:larger" aria-hidden="true"></span> 
-                      Custom Dev and TA Conference Day 2017</a> 
-                      
-                         / <a href='/gettingstarted/install/'>Getting Started</a> / <a href='/gettingstarted/firstfunction/'>First Function</a>
-                      
-                      
-              </div>
-              
-                  <div class="progress">
+                   / <a href='/gettingstarted/install/'>Getting Started</a> / <a href='/gettingstarted/firstfunction/'>First Function</a>
+                
+                
+            </div>
+            <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
 <ul>
@@ -351,13 +366,13 @@
     </div>
 </div>
 
-            </div>
+          </div>
         
-              
-            <div id="body-inner">
-              
-              <h1>First Function</h1>
-                
+        
+        <div id="body-inner">
+          
+            <h1>First Function</h1>
+          
 
 
 
@@ -414,50 +429,142 @@ def handler():
 
     <div id="navigation">
         
-
-          
         
-              
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+                    
+            
             
                 
                     
                     
                 
+                
+                
+            
+        
+                
+                    
+            
             
                 
                     
                         
                         
-                            
-                                
-                            
-                        
                     
                 
+                
+                
+            
+        
+                
+                    
+            
             
                 
                     
-                        
-                        
-                            
-                        
-                    
                 
+                
+                
+            
+        
+                
+                    
+            
             
                 
                     
-                        
-                        
-                            
-                        
-                    
+                
+                
                 
             
+        
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+        
+            
+            
+            
+                
+                    
+                
+                
+                
+            
+        
+          
 
-            
-            
-                <a class="nav nav-next" href="/gettingstarted/update/" title="Update a Function" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
-            
+        
+
+
+        
+            <a class="nav nav-prev" href="/gettingstarted/install/" title="Getting Started"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/gettingstarted/update/" title="Update a Function" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 

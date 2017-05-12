@@ -87,9 +87,8 @@ and then maybe return some of
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://serverless.containercluster.net/ex2/</guid>
-      <description>yoda api? https://market.mashape.com/ismaelc/yoda-speak
-something like (but without async/await since we only have node-6.10)
-&#39;use strict&#39;; const rp = require(&#39;request-promise-native&#39;); module.exports = async function (context) { const body = context.request.body; // no parameters given, respond to user with help if (!body.text || body.text === &#39;help&#39;) { return { status: 200, body: { &amp;quot;response_type&amp;quot;: &amp;quot;ephemeral&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Example: `/yoda You have to go a long way`&amp;quot;, &amp;quot;username&amp;quot;: &amp;quot;Yoda&amp;quot;, &amp;quot;icon_url&amp;quot;: &amp;quot;https://d30y9cdsu7xlg0.cloudfront.net/png/32434-200.png&amp;quot; } }; } // build the request object try { var options = { uri: &#39;https://yoda.</description>
+      <description>Now that we are python experts, we can move on to JavaScript. The following code implements an echo service in JavaScript:
+const querystring = require(&#39;querystring&#39;); module.exports = { handler: function (req, res) { var body = [] req.on(&#39;error&#39;, (err) =&amp;gt; console.error(err) ).on(&#39;data&#39;, (chunk) =&amp;gt; body.push(chunk) ).on(&#39;end&#39;, () =&amp;gt; { let qs = querystring.parse(body) body = Buffer.concat(body).toString() console.log(&amp;quot;querystring: &amp;quot;, qs) let resp = { &amp;quot;response_type&amp;quot;: &amp;quot;in_channel&amp;quot;, &amp;quot;text&amp;quot;: qs.text } res.end(JSON.stringify(resp)) }) } }  We use the LTS Version of nodejs (v6.</description>
     </item>
     
     <item>
