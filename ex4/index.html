@@ -285,7 +285,26 @@
           
 
 
-<p>scale application on kubernets?</p>
+<p>Query the Kubernetes API!</p>
+
+<p>Here&rsquo;s a hint:</p>
+
+<pre><code class="language-python">from kubernetes import client, config
+
+config.load_incluster_config()
+
+v1=client.CoreV1Api()
+</code></pre>
+
+<p>An important factor is how to bring dependencies. In python this is done via a file called <code>requirements.txt</code>. Let&rsquo;s create a file with <code>vim requirements.txt</code>:</p>
+
+<pre><code>kubernetes
+</code></pre>
+
+<p>and then deploy with <code>--dependencies</code>:</p>
+
+<pre><code>kubeless function deploy [...] --trigger-http --dependencies requirements.txt
+</code></pre>
 
 
 <footer class=" footline" >

@@ -39,7 +39,7 @@
 	"title": "Exercise 1",
 	"tags": [],
 	"description": "",
-	"content": "parse input from mattermost chat and then maybe return some of # user_id = context.forms.user_id # response_url = context.forms.response_url # token = context.forms.token # channel_id = context.forms.channel_id # team_id = context.forms.team_id # command = context.forms.command # team_domain = context.forms.team_domain # user_name = context.forms.user_name # channel_name = context.forms.channel_name text = context.forms.text "
+	"content": "Parse input from mattermost chat and query a REST API: kubeless function deploy &amp;lt;TEAM-NAME&amp;gt;-yoda --runtime python27 --handler yoda.handler --from-file yoda.py --trigger-http kubeless function update &amp;lt;TEAM-NAME&amp;gt;-yoda --runtime python27 --handler yoda.handler --from-file yoda.py And then return with whatever the API responds to the chatroom. "
 },
 {
 	"uri": "http://serverless.containercluster.net/ex2/",
@@ -53,14 +53,14 @@
 	"title": "Exercise 3",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Make a request to the Zalando API and print the latest 5 sport shoes on sale. With pictures! The api is available here: https://api.zalando.com/swagger/index.html Here is some help to format the message: https://docs.mattermost.com/developer/slash-commands.html "
 },
 {
 	"uri": "http://serverless.containercluster.net/ex4/",
 	"title": "Exercise 4",
 	"tags": [],
 	"description": "",
-	"content": "scale application on kubernets? "
+	"content": "Query the Kubernetes API! Here&amp;rsquo;s a hint: from kubernetes import client, config config.load_incluster_config() v1=client.CoreV1Api() An important factor is how to bring dependencies. In python this is done via a file called requirements.txt. Let&amp;rsquo;s create a file with vim requirements.txt: kubernetes and then deploy with --dependencies: kubeless function deploy [...] --trigger-http --dependencies requirements.txt "
 },
 {
 	"uri": "http://serverless.containercluster.net/rest/",
