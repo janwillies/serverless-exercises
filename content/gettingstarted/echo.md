@@ -45,4 +45,4 @@ $ curl -X POST -d"text=test" team1-echo.default:8080 -H "Content-Type: applicati
 {"text": "Echo: test", "response_type": "in_channel"}
 ```
 
-Not too bad! Head over to the Mattermost to interact with the function via a chatbot.
+Not too bad! Head over to the next chapter to see how you can interact with the function via a chatbot.
